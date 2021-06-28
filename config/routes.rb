@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  root "sessions#login"
   get "/movies", to: "movies#index"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+
+  #Users routes:
+  resources :users, only: [:new, :create]
+
+  #Sessions routes:
+  get '/login', to: 'sessions#login'
+  post '/login', to: 'sessions#create'
+
 end
