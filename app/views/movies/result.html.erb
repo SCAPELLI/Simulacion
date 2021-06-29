@@ -1,6 +1,14 @@
-<h1>Result</h1>
-<li>
-    <%= @movie['Title'] %>
-    <%= @movie['Genre'] %>
-</li>
-<img src=<%= @movie['Poster'] %> alt="W3Schools.com">
+<style>
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+</style>
+<body> <div class="content">
+    <h1>Result</h1>
+    <li>
+        <%= @movie['Title'] %>
+        <%= @movie['Genre'] %>
+    </li>
+    <img src=<%= @movie['Poster'] %> alt="W3Schools.com">
+</div></body>

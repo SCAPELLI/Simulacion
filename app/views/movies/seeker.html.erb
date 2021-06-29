@@ -1,18 +1,26 @@
-<h1>Search a movie</h1>
-<form action="/movies/seeker/result" accept-charset="UTF-8" method="post">
-  <input type="hidden" name="authenticity_token" value="...">
+<style>
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+</style>
+<body> <div class="content">
+  <h1>Search a movie</h1>
+  <form action="/movies/seeker/result" accept-charset="UTF-8" method="post">
+    <input type="hidden" name="authenticity_token" value="...">
 
-  <div>
-    <label for="article_title">Title</label><br>
-    <input type="text" name="movie[title]" id="article_title">
-  </div>
+    <div>
+      <label for="article_title">Title</label><br>
+      <input type="text" name="movie[title]" id="article_title">
+    </div>
 
-  <div>
-    <label for="article_body">Year</label><br>
-    <textarea name="movie[year]" id="article_body"></textarea>
-  </div>
+    <div>
+      <label for="article_body">Year</label><br>
+      <input name="movie[year]" id="article_body">
+    </div>
 
-  <div>
-    <input type="submit" name="commit" value="Search movies" data-disable-with="Create Filters">
-  </div>
-</form>
+    <div>
+      <button type="submit" class="btn btn-primary btn-lg">Search movies</button>
+    </div>
+  </form>
+</div></body>
