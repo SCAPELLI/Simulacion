@@ -6,9 +6,19 @@
 </style>
 <body> <div class="content">
     <h1>Result</h1>
-    <li>
-        <%= @movie['Title'] %>
-        <%= @movie['Genre'] %>
-    </li>
+    <li><%= @movie['Title'] %></li>
+    <li><%= @movie['Genre'] %></li>
+    <li><%= @movie['Year'] %></li>
+    <li><%= @movie['Rated'] %></li>
+    <li><%= @movie['Runtime'] %></li>
+    <li><%= @movie['Director'] %></li>
+    <li><%= @movie['Year'] %></li>
+    <li><%= @movie['Actors'] %></li>
+    <li><%= @movie['Language'] %></li>
+    <li>Rating: <%= @movie['Ratings'][1]['Value'] %></li>
+    <li>Year: <%= @movie['Year'] %></li>
+    
     <img src=<%= @movie['Poster'] %> alt="W3Schools.com">
+    <li><%= @movie['Plot'] %></li>
+
 </div></body>
