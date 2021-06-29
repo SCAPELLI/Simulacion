@@ -1,24 +1,27 @@
-# README
+# Trabajo Practico TDL 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Integrantes
+    - Hugo Larrea
+    - Diego Balestieri
+    - Sebita :3
 
-Things you may want to cover:
+### Docker 
 
-* Ruby version
+Para ejecutar la aplicacion con Docker seguir los siguientes pasos: 
 
-* System dependencies
+```
+ sudo docker build -t tdl .
+ sudo docker run -it --rm -p 3000:3000 tdl /bin/bash
+```
+Una vez dentro del contenedor ejecutar: 
 
-* Configuration
+```
+./init.sh
+```
 
-* Database creation
+De tener problemas en correr el shell script, salir del container y ejecutar: 
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+sudo chmod +x init.sh
+```
+Correr nuevamente el docker y volver a intentar. 
