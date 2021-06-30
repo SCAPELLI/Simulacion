@@ -15,12 +15,6 @@ se debera crear la variable de entoro de TMDB_API_KEY
 ```
 TMDB_API_KEY: <API_KEY>
 ```
-
-Dentro del docker correr 
-```
-./init_and_config.sh
-```
-
 ### Docker 
 
 Para ejecutar la aplicacion con Docker seguir los siguientes pasos: 
