@@ -1,0 +1,22 @@
+<style>
+.content {
+  max-width: 800px;
+  margin: auto;
+}
+</style>
+<body> <div class="content">
+    <h1><%= @movie['Title'] %> (<%= @movie['Year'] %>)</h1>
+    <li>Genre: <%= @movie['Genre'] %></li>
+    <li>Rated: <%= @movie['Rated'] %></li>
+    <li>Runtime: <%= @movie['Runtime'] %></li>
+    <li>Director: <%= @movie['Director'] %></li>
+    <li>Reparto: <%= @movie['Actors'] %></li>
+    <li>Language: <%= @movie['Language'] %></li>
+    <li>Year: <%= @movie['Year'] %></li>
+    <img src=<%= @movie['Poster'] %> alt="W3Schools.com">
+    <li>Plot: <%= @movie['Plot'] %></li>
+
+    <form action="https://matias.ma/nsfw/" method="get">
+      <input type="submit" value="Add to my list" />
+    </form>
+</div></body>

@@ -1,0 +1,19 @@
+<style>
+.content {
+  max-width: 800px;
+  margin: auto
+}
+</style>
+<body> <div class="content">
+    <h1>Results</h1>
+    <ul>
+      <% @movies.each do |movie| %>
+        <li><%= movie["Title"] %> (<%= movie["Year"]%>)</li>
+        <img src=<%= movie["Poster"] %> alt="Poster">
+
+        <form action=<%= "/movies/id/" + movie["imdbID"]%>>
+          <input type="submit" value="View details" />
+        </form>
+      <% end %>
+    </ul>
+</div></body>
