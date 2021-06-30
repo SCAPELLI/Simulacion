@@ -5,18 +5,25 @@
 }
 </style>
 <body> <div class="content">
-    <h1><%= @movie['Title'] %> (<%= @movie['Year'] %>)</h1>
-    <li>Genre: <%= @movie['Genre'] %></li>
-    <li>Rated: <%= @movie['Rated'] %></li>
-    <li>Runtime: <%= @movie['Runtime'] %></li>
-    <li>Director: <%= @movie['Director'] %></li>
-    <li>Reparto: <%= @movie['Actors'] %></li>
-    <li>Language: <%= @movie['Language'] %></li>
-    <li>Year: <%= @movie['Year'] %></li>
-    <img src=<%= @movie['Poster'] %> alt="W3Schools.com">
-    <li>Plot: <%= @movie['Plot'] %></li>
+    <h1><%= @movie['title'] %> (<%= @movie['release_date'].split('-')[0] %>)</h1>
 
+    <li>Genre: 
+      <% for i in @movie['genres']%>
+         <%= i["name"]%> 
+      <% end %>
+    </li>
+    <li>Score: <%= @movie['vote_average'] %></li>
+    <li>Runtime: <%= @movie['runtime'] %></li>
+    <li>Language: <%= @movie['original_language'] %></li>
+    <img src= https://image.tmdb.org/t/p/w500<%= @movie["poster_path"].to_s %> alt="Poster">
+
+    <li>Plot: <%= @movie['overview'] %></li>
     <form action="https://matias.ma/nsfw/" method="get">
       <input type="submit" value="Add to my list" />
     </form>
+    
+    <img src= https://image.tmdb.org/t/p/w500<%= @movie["backdrop_path"].to_s %> alt="Poster">
+ 
 </div></body>
+
+name = "my name is: andrew".split('-')[0] # => "andrew"

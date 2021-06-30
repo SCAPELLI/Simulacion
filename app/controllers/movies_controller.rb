@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
     unless session[:user_id]
       redirect_to root_path
     end
-    url = URI.parse('https://api.themoviedb.org/3/movie/736073?api_key='+ ENV['TMDB_API_KEY']  +'&language=en-US')
+    url = URI.parse('https://api.themoviedb.org/3/movie/10681?api_key='+ ENV['TMDB_API_KEY']  +'&language=en-US')
     res = Net::HTTP.get(url)
     @movie = ActiveSupport::JSON.decode(res)
   end
@@ -18,14 +18,14 @@ class MoviesController < ApplicationController
       $year = params[:movie][:year]
     end
     omdb = "http://www.omdbapi.com/?apikey=e4c4b604&plot=full"
-    url = URI.parse(omdb + '&s=' + $title + '&y=' + $year)
-    req = Net::HTTP::Get.new(url.to_s)
-    res = Net::HTTP.start(url.host, url.port) {|http|
-      http.request(req)
-    }
-    @response = ActiveSupport::JSON.decode(res.body)
-    if @response["Response"] == "True"
-      @movies = @response["Search"]
+    tmdb = "https://api.themoviedb.org/3/search/movie?api_key=" + ENV['TMDB_API_KEY']
+    url = URI.parse(tmdb + '&query=' + $title )
+    
+    res = Net::HTTP.get(url)
+    @response = ActiveSupport::JSON.decode(res)
+
+    if @response["total_results"] != 0
+      @movies = @response["results"]
       render :results
     else
       redirect_to "/movies/seeker"
@@ -34,14 +34,11 @@ class MoviesController < ApplicationController
   
   def find_by_id
     id = params[:id]
-    omdb = "http://www.omdbapi.com/?apikey=e4c4b604&plot=full"
-    url = URI.parse(omdb +'&i=' + id)
-    req = Net::HTTP::Get.new(url.to_s)
-    res = Net::HTTP.start(url.host, url.port) {|http|
-      http.request(req)
-    }
-    @movie = ActiveSupport::JSON.decode(res.body)
-    if @movie["Response"] == "True"
+    url = URI.parse('https://api.themoviedb.org/3/movie/' + id + '?api_key='+ ENV['TMDB_API_KEY']  +'&language=en-US')
+    res = Net::HTTP.get(url)
+    @movie = ActiveSupport::JSON.decode(res)
+
+    if @movie["success"] != false
       render :details
     else
       redirect_to "/movies/seeker"
