@@ -17,9 +17,8 @@ class MoviesController < ApplicationController
       $title = params[:movie][:title]
       $year = params[:movie][:year]
     end
-    omdb = "http://www.omdbapi.com/?apikey=e4c4b604&plot=full"
-    tmdb = "https://api.themoviedb.org/3/search/movie?api_key=" + ENV['TMDB_API_KEY']
-    url = URI.parse(tmdb + '&query=' + $title )
+    tmdb = "https://api.themoviedb.org/3/search/movie?api_key="
+    url = URI.parse(tmdb + ENV['TMDB_API_KEY'] + '&query=' + $title + '&year=' + $year)
     
     res = Net::HTTP.get(url)
     @response = ActiveSupport::JSON.decode(res)
