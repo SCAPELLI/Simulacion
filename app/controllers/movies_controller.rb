@@ -1,6 +1,17 @@
 require 'net/http'
 
 class MoviesController < ApplicationController
+
+  def index
+    unless session[:user_id]
+      redirect_to root_path
+    end
+    url = URI.parse('https://api.themoviedb.org/3/movie/736073?api_key='+ ENV['TMDB_API_KEY']  +'&language=en-US')
+    res = Net::HTTP.get(url)
+    @movie = ActiveSupport::JSON.decode(res)
+  end
+
+
   def results
     if params[:movie] != nil
       $title = params[:movie][:title]

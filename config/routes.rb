@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "sessions#login"
 
+  get "/movies", to: "movies#index"
+
   get "/movies/seeker", to: "movies#seeker"
 
   get "/movies/seeker/result", to: "movies#results"
