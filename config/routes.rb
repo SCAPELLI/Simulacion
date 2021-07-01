@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   #Users routes:
   resources :users, only: [:new, :create]
+  get "/users/:id", to: "users#show"
 
   #Sessions routes:
   get '/login', to: 'sessions#login'
