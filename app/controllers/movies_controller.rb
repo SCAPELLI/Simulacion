@@ -6,9 +6,16 @@ class MoviesController < ApplicationController
     unless session[:user_id]
       redirect_to root_path
     end
-    url = URI.parse('https://api.themoviedb.org/3/movie/10681?api_key='+ ENV['TMDB_API_KEY']  +'&language=en-US')
+    tmdb = 'https://api.themoviedb.org/3/movie/popular?api_key=' + ENV['TMDB_API_KEY'] + '&language=en-US&page=1'
+    url = URI.parse(tmdb)
+
     res = Net::HTTP.get(url)
-    @movie = ActiveSupport::JSON.decode(res)
+    @response = ActiveSupport::JSON.decode(res)
+
+    if @response["total_results"] != 0
+      @movies = @response["results"]
+      render :index
+    end
   end
 
 

@@ -1,19 +1,40 @@
-<style>
-.content {
-  max-width: 800px;
-  margin: auto;
-}
-</style>
+
 <body> <div class="content">
-  <h1><%= @movie['title'] %></h1>
+  <h1>Popular Movies!</h1>
+  <ul>
 
-  <li>
-    Score: <%= @movie['vote_average'] %>
-  </li>
-
-  <img src=https://image.tmdb.org/t/p/w500<%=@movie['poster_path'] %>>
-
+    <table style="width:100%">
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><img src=https://image.tmdb.org/t/p/w300<%= movie["poster_path"] %> alt="Poster"></td>
+        <td>
+          <h3><%= movie["title"] %></h3>
+          <ul>
+            <li>Release Date: <%= movie["release_date"]%></li>
+            <li>Sinopsis: <%= movie["overview"]%></li>
+            <li>Rate: <%= movie["vote_average"]%></li>
+          </ul>
+          <form action=<%= "/movies/id/" + movie["id"].to_s%>>
+            <input type="submit" value="View details" />
+          </form>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </ul>
   <form action="/movies/seeker" method="get">
-        <input type="submit" value="Search more movies" />
+    <input type="submit" value="Search more movies" />
   </form>
 </div></body>
+
+<style>
+    .content {
+        max-width: 800px;
+        margin: auto
+    }
+    td {
+        align-items: center;
+        border-bottom: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
