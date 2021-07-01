@@ -44,7 +44,16 @@ class MoviesController < ApplicationController
     res = Net::HTTP.get(url)
     @movie = ActiveSupport::JSON.decode(res)
 
+    url = URI.parse('https://api.themoviedb.org/3/movie/' + id + '/similar?api_key='+ ENV['TMDB_API_KEY']  +'&language=en-US&page=1')
+    res = Net::HTTP.get(url)
+    @response = ActiveSupport::JSON.decode(res)
+
     if @movie["success"] != false
+      if @response["total_results"] != 0
+        @similars = @response['results']
+      else
+        @similars = {}
+      end
       render :details
     else
       redirect_to "/movies/seeker"

@@ -23,6 +23,23 @@
     </form>
     
     <img src= https://image.tmdb.org/t/p/w500<%= @movie["backdrop_path"].to_s %> alt="Poster">
+  <% if @similars.count > 0 %>
+    <h3>Similar Movies</h3>
+    <table style="width:100%">
+      <tr>
+        <% @similars.take(3).each do |movie| %>
+          <td>
+            <%= movie["title"] %> (<%= movie["release_date"].split('-')[0]%>)
+            <img src=https://image.tmdb.org/t/p/w200<%= movie["poster_path"] %> alt="Poster">
+            <form action=<%= "/movies/id/" + movie["id"].to_s%>>
+              <input type="submit" value="View details" />
+            </form>
+          </td>
+
+        <% end %>
+      </tr>
+    </table>
+  <% end %>
  
 </div></body>
 
