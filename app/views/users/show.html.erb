@@ -9,5 +9,12 @@
     <h1>Name: <%= @user.name %></h1>
     <h1>Last Name: <%= @user.lastName %></h1>
     <h1>Username: <%= @user.username %></h1>
+    <h2>Liked Movies</h2>
+    <% @user.movies.each do |movie| %>
+      <p>
+        <strong>Movie Id:</strong>
+        <%= movie.tmdbId %>
+      </p>
+    <% end %>
   </div>
 </body>

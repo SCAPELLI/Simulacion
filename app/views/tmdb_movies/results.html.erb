@@ -14,7 +14,7 @@ img {
         <li><%= movie["title"] %> (<%= movie["release_date"].split('-')[0]%>)</li>
         <img src=https://image.tmdb.org/t/p/w500<%= movie["poster_path"] %> alt="Poster">
 
-        <form action=<%= "/movies/id/" + movie["id"].to_s%>>
+        <form action=<%= "/tmdb_movies/id/" + movie["id"].to_s%>>
           <input type="submit" value="View details" />
         </form>
       <% end %>

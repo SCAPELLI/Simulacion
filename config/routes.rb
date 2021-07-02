@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
   root "sessions#login"
 
-  get "/movies", to: "movies#index"
+  get "/movies", to: "tmdb_movies#index"
 
-  get "/movies/seeker", to: "movies#seeker"
+  get "/movies/seeker", to: "tmdb_movies#seeker"
 
-  get "/movies/seeker/result", to: "movies#results"
-  post "/movies/seeker/result", to: "movies#results"
+  get "/movies/seeker/result", to: "tmdb_movies#results"
+  post "/movies/seeker/result", to: "tmdb_movies#results"
 
-  get "/movies/id/:id", to: "movies#find_by_id"
+  get "/movies/id/:id", to: "tmdb_movies#find_by_id"
 
   #Users routes:
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create] do
+    resources :movies
+  end
   get "/users/:id", to: "users#show"
 
   #Sessions routes:
@@ -19,3 +21,4 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
 end
+

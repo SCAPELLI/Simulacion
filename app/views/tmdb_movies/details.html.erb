@@ -18,10 +18,15 @@
     <img src= https://image.tmdb.org/t/p/w500<%= @movie["poster_path"].to_s %> alt="Poster">
 
     <li>Plot: <%= @movie['overview'] %></li>
-    <form action="https://matias.ma/nsfw/" method="get">
-      <input type="submit" value="Add to my list" />
-    </form>
-    
+    <%= form_with model: [ @user, @user.movies.build ] do |form| %>
+      <p>
+        <%= form.text_area :tmdbId, value:@movie['id'].to_s, style: 'display:none'  %>
+      </p>
+      <p>
+        <%= form.submit 'Add to Favourites' %>
+      </p>
+    <% end %>
+
     <img src= https://image.tmdb.org/t/p/w500<%= @movie["backdrop_path"].to_s %> alt="Poster">
   <% if @similars.count > 0 %>
     <h3>Similar Movies</h3>
@@ -31,7 +36,7 @@
           <td>
             <%= movie["title"] %> (<%= movie["release_date"].split('-')[0]%>)
             <img src=https://image.tmdb.org/t/p/w200<%= movie["poster_path"] %> alt="Poster">
-            <form action=<%= "/movies/id/" + movie["id"].to_s%>>
+            <form action=<%= "/tmdb_movies/id/" + movie["id"].to_s%>>
               <input type="submit" value="View details" />
             </form>
           </td>
