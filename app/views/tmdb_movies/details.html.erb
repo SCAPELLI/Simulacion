@@ -1,51 +1,58 @@
 <style>
 .content {
-  max-width: 800px;
-  margin: auto;
+	max-width: 800px;
+	margin: auto;
 }
 </style>
-<body> <div class="content">
-    <h1><%= @movie['title'] %> (<%= @movie['release_date'].split('-')[0] %>)</h1>
+<body>
+    <div class="content">
+		<h1><%= @movie['title'] %> (<%= @movie['release_date'].split('-')[0] %>)</h1>
 
-    <li>Genre: 
-      <% for i in @movie['genres']%>
-         <%= i["name"]%> 
-      <% end %>
-    </li>
-    <li>Score: <%= @movie['vote_average'] %></li>
-    <li>Runtime: <%= @movie['runtime'] %></li>
-    <li>Language: <%= @movie['original_language'] %></li>
-    <img src= https://image.tmdb.org/t/p/w500<%= @movie["poster_path"].to_s %> alt="Poster">
+		<li>Genre:
+			<% for i in @movie['genres']%>
+				 <%= i["name"]%>
+			<% end %>
+		</li>
+		<li>Score: <%= @movie['vote_average'] %></li>
+		<li>Runtime: <%= @movie['runtime'] %></li>
+		<li>Language: <%= @movie['original_language'] %></li>
+		<img src= https://image.tmdb.org/t/p/w500<%= @movie["poster_path"].to_s %> alt="Poster">
 
-    <li>Plot: <%= @movie['overview'] %></li>
-    <%= form_with model: [ @user, @user.movies.build ] do |form| %>
-      <p>
-        <%= form.text_area :tmdbId, value:@movie['id'].to_s, style: 'display:none'  %>
-      </p>
-      <p>
-        <%= form.submit 'Add to Favourites' %>
-      </p>
-    <% end %>
-
-    <img src= https://image.tmdb.org/t/p/w500<%= @movie["backdrop_path"].to_s %> alt="Poster">
-  <% if @similars.count > 0 %>
-    <h3>Similar Movies</h3>
-    <table style="width:100%">
-      <tr>
-        <% @similars.take(3).each do |movie| %>
-          <td>
-            <%= movie["title"] %> (<%= movie["release_date"].split('-')[0]%>)
-            <img src=https://image.tmdb.org/t/p/w200<%= movie["poster_path"] %> alt="Poster">
-            <form action=<%= "/tmdb_movies/id/" + movie["id"].to_s%>>
-              <input type="submit" value="View details" />
-            </form>
-          </td>
-
+		<li>Plot: <%= @movie['overview'] %></li>
+        <% if @user.movies.exists?(tmdbId: @movie['id'].to_s) %>
+            <p>
+                <div class="btn btn-outline-secondary" >
+                    <%= link_to 'Remove from favourites', user_movie_path(user_id: @user.id, tmdbId: @movie['id'].to_s),
+                                method: :delete, :onclick => "history.go(0)" %>
+                </div>
+            </p>
+        <% else %>
+            <%= form_with model: [ @user, @user.movies.build ] do |form| %>
+                <p>
+                    <%= form.text_area :tmdbId, value:@movie['id'].to_s, style: 'display:none'  %>
+                </p>
+                <p>
+                    <%= form.submit 'Add to Favourites' %>
+                </p>
+            <% end %>
         <% end %>
-      </tr>
-    </table>
-  <% end %>
- 
-</div></body>
+		<img src= https://image.tmdb.org/t/p/w500<%= @movie["backdrop_path"].to_s %> alt="Poster">
+	    <% if @similars.count > 0 %>
+            <h3>Similar Movies</h3>
+            <table style="width:100%">
+                <tr>
+                    <% @similars.take(3).each do |movie| %>
+                        <td>
+                            <%= movie["title"] %> (<%= movie["release_date"].split('-')[0]%>)
+                            <img src=https://image.tmdb.org/t/p/w200<%= movie["poster_path"] %> alt="Poster">
+                            <form action=<%= "/tmdb_movies/id/" + movie["id"].to_s%>>
+                                <input type="submit" value="View details" />
+                            </form>
+                        </td>
 
-name = "my name is: andrew".split('-')[0] # => "andrew"
+                    <% end %>
+			    </tr>
+		    </table>
+	    <% end %>
+    </div>
+</body>
