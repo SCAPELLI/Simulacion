@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row align-items-start">
+    <% (0..(@movies.count-1)).each do |i|%>
+      <div class="card" style="width: 18rem;">
+        <img src=https://image.tmdb.org/t/p/w300<%= @movies[i]["poster_path"] %> class="card-img-top" alt="Poster">
+        <div class="card-body">
+          <h3><%= @movies[i]["title"] %></h3>
+          <p class="card-text"><%= @movies[1]["overview"]%></p>
+          <p>Rate: <%= @movies[1]["vote_average"]%></p>
+          <a href=<%= "/movies/id/" + @movies[1]["id"].to_s%>  class="btn btn-primary"> Details </a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
