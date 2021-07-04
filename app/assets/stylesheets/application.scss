@@ -13,3 +13,31 @@
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+#boxy{
+  background: image-url('rootImage.jpg') no-repeat;
+  /* Full height */
+  max-width: 100%;
+  max-height: 100%;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+#divLoggin {
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+#bodyMovies {
+   background-color: #9DB8E3;
+}
