@@ -1,0 +1,13 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/movies">My Movies List</a>
+  <form class="form-inline">
+    <a class="btn btn-outline-primary" href=<%= "/movies/seeker"%> >
+      Search Movies
+    </a>
+    <div style="padding-left: 10px;">
+      <a class="btn btn-outline-success" href=<%= "/users/" + session[:user_id].to_s%> >
+        Profile
+      </a>
+    </div>
+  </form>
+</nav>
