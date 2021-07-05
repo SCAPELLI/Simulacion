@@ -13,20 +13,16 @@
 
 <body>
   <div class="content">
-    <h1>Name: <%= @user.name %></h1>
-    <h1>Last Name: <%= @user.lastName %></h1>
-    <h1>Username: <%= @user.username %></h1>
+      <div class="card" style="width: 100%;">
+          <div class="card-body">
+              <h5 class="card-title"><%= @user.name %> <%= @user.lastName %></h5>
+              <p class="card-text"><b>Username:</b> <%= @user.username %></p>
+          </div>
+      </div>
     <h2>Liked Movies</h2>
-    <% @user.movies.each do |movie| %>
-      <p>
-        <strong>Movie: </strong>
-        <% #= movie.tmdbId %>
-        <% url = URI.parse('https://api.themoviedb.org/3/movie/' + movie.tmdbId + '?api_key='+ ENV['TMDB_API_KEY']  +'&language=en-US')%>
-        <% res = Net::HTTP.get(url)%>
-        <% movie_z = ActiveSupport::JSON.decode(res) %>
-        <% poster_path = movie_z['poster_path']%>
-        <img src= https://image.tmdb.org/t/p/w500<%= poster_path.to_s %> alt="Poster">
-      </p>
-    <% end %>
+    <ul>
+      <%= render 'tmdb_movies/listMovies' %>
+    </ul>
   </div>
 </body>
+
