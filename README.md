@@ -39,3 +39,5 @@ De tener problemas en correr el shell script, salir del container y ejecutar:
 sudo chmod +x init.sh
 ```
 Correr nuevamente ambos comandos.
+
+Link a drive: https://drive.google.com/drive/folders/1BVO3oN8KRJSFuu29OmE64tZ8ZJuXVCeA?usp=sharing
