@@ -19,8 +19,13 @@
     <h2>Liked Movies</h2>
     <% @user.movies.each do |movie| %>
       <p>
-        <strong>Movie Id:</strong>
-        <%= movie.tmdbId %>
+        <strong>Movie: </strong>
+        <% #= movie.tmdbId %>
+        <% url = URI.parse('https://api.themoviedb.org/3/movie/' + movie.tmdbId + '?api_key='+ ENV['TMDB_API_KEY']  +'&language=en-US')%>
+        <% res = Net::HTTP.get(url)%>
+        <% movie_z = ActiveSupport::JSON.decode(res) %>
+        <% poster_path = movie_z['poster_path']%>
+        <img src= https://image.tmdb.org/t/p/w500<%= poster_path.to_s %> alt="Poster">
       </p>
     <% end %>
   </div>

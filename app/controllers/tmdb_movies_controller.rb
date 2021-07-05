@@ -1,7 +1,8 @@
 require 'net/http'
 
-class TmdbMoviesController < ApplicationController
 
+class TmdbMoviesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
     unless session[:user_id]
       redirect_to root_path

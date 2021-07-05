@@ -4,7 +4,7 @@
       <div class="card" style="width: 18rem;">
         <img src=https://image.tmdb.org/t/p/w300<%= @movies[i]["poster_path"] %> class="card-img-top" alt="Poster">
         <div class="card-body">
-          <h3><%= @movies[i]["title"] %></h3>
+          <h3><%= @movies[i]["title"] %> (<%= @movies[i]['release_date'].split('-')[0]%>)</h3>
           <p class="card-text"><%= @movies[i]["overview"]%></p>
           <p>Rate: <%= @movies[i]["vote_average"]%></p>
           <a href=<%= "/movies/id/" + @movies[i]["id"].to_s%>  class="btn btn-primary"> Details </a>
