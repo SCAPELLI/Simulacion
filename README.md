@@ -3,7 +3,7 @@
 ### Integrantes
     - Hugo Larrea
     - Diego Balestieri
-    - Sebita :3
+    - Sebastián Capelli
 
 
 ### Inicializar variables de entorno
