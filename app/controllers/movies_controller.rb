@@ -36,14 +36,18 @@ class MoviesController < ApplicationController
     mutex = Mutex.new
     threads = []
     movies = ""
+
+    # ids pares
     threads << Thread.new {
-      for i in 0..user.movies.length/2-1 do
+      for i in 0..user.movies.length/2- 1do
         name = find_movie_by_id(user.movies[2*i].tmdbId)
         mutex.synchronize do
           movies += name + " - T1\n"
         end
       end
     }
+
+    # ids impares
     threads << Thread.new {
       for i in 0..user.movies.length/2-1 do
         name = find_movie_by_id(user.movies[2*i+1].tmdbId)
