@@ -20,6 +20,11 @@
           </div>
       </div>
     <h2>Liked Movies</h2>
+      <form action="/users/<%= @user.id %>/movies/export" method="get">
+          <div>
+              <button type="submit" class="btn btn-primary btn-lg">Export profile</button>
+          </div>
+      </form>
     <ul>
       <%= render 'tmdb_movies/listMovies' %>
     </ul>

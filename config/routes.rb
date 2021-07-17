@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get "/movies/id/:id", to: "tmdb_movies#find_by_id"
 
+  get "/users/:id/movies/export", to: "movies#export"
   #Users routes:
   resources :users, only: [:new, :create] do
     resources :movies
